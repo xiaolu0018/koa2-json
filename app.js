@@ -71,13 +71,18 @@ app.use(async (ctx, next) => {
 
 router.all('**/*.action', async (ctx, next) => {
   let fsName;
-  if(/\/(\w+).action/.test(ctx.url)){
-    fsName = RegExp.$1;
+  if (/\/?(\w*)\/(\w+).action/.test(ctx.url)) {
+    var act = RegExp.$2;
+    var isFirst = RegExp.$1;
+    isFirst && (act = act.substring(0, 1).toUpperCase() + act.substring(1));
+    fsName = isFirst + act;
     ctx.response.type = 'json';
-    ctx.response.body = fs.createReadStream('./data/' + fsName +'.json');
-  }else{
-    ctx.throw('没有这个文件');
+    ctx.response.body = fs.createReadStream('F:\\2019\\cloudm1.0\\data\\' + fsName + '.json');
+  } else {
+    ctx.throw(`没有这个${fsName}文件`);
   }
+
+
 
 
 })

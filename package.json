@@ -1,9 +1,10 @@
 {
-  "name": "json-test",
+  "name": "json-server-test",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "debug":"node --inspect app.js"
   },
   "dependencies": {
     "debug": "~2.6.8",
